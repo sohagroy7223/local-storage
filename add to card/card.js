@@ -15,5 +15,8 @@ const displayProduct = (name, quantity) => {
 };
 
 const handleSetLocalStorage = (productName, quantity) => {
-  localStorage.setItem(productName, quantity);
+  // localStorage.setItem(productName, quantity);
+  //////////////////////////
+  const newProduct = { name: "jack", quantity: 10 };
+  localStorage.setItem("jack", JSON.stringify(newProduct));
 };
