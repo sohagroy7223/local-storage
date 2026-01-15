@@ -5,8 +5,15 @@ const handelAddToCard = () => {
 };
 
 const displayProduct = (name, quantity) => {
+  productName.value = "";
+  productQuantity.value = "";
+  handleSetLocalStorage(name, quantity);
   const container = document.getElementById("card-container");
   const li = document.createElement("li");
   li.innerText = `${name}:${quantity}`;
   container.append(li);
+};
+
+const handleSetLocalStorage = (productName, quantity) => {
+  localStorage.setItem(productName, quantity);
 };
