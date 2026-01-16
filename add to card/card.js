@@ -7,16 +7,30 @@ const handelAddToCard = () => {
 const displayProduct = (name, quantity) => {
   productName.value = "";
   productQuantity.value = "";
-  handleSetLocalStorage(name, quantity);
+  saveProductToLocalStorage(name, quantity);
   const container = document.getElementById("card-container");
   const li = document.createElement("li");
   li.innerText = `${name}:${quantity}`;
   container.append(li);
 };
 
-const handleSetLocalStorage = (productName, quantity) => {
-  // localStorage.setItem(productName, quantity);
-  //////////////////////////
-  const newProduct = { name: "jack", quantity: 10 };
-  localStorage.setItem("jack", JSON.stringify(newProduct));
+const getProductFromLocalStorage = () => {
+  let card = {};
+  const getProduct = localStorage.getItem(card);
+  if (getProduct) {
+    card = JSON.stringify(getProduct);
+  }
+  return card;
 };
+
+const saveProductToLocalStorage = (productName, quantity) => {
+  const card = getProductFromLocalStorage();
+  console.log(card);
+};
+
+const product = {
+  laptop: 20,
+};
+
+product["laptop"] = 100;
+console.log(product);
