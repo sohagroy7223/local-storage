@@ -16,21 +16,16 @@ const displayProduct = (name, quantity) => {
 
 const getProductFromLocalStorage = () => {
   let card = {};
-  const getProduct = localStorage.getItem(card);
+  const getProduct = localStorage.getItem("card");
   if (getProduct) {
-    card = JSON.stringify(getProduct);
+    card = JSON.parse(getProduct);
   }
   return card;
 };
 
 const saveProductToLocalStorage = (productName, quantity) => {
   const card = getProductFromLocalStorage();
-  console.log(card);
+  card[productName] = quantity;
+  const cardString = JSON.stringify(card);
+  localStorage.setItem("card", cardString);
 };
-
-const product = {
-  laptop: 20,
-};
-
-product["laptop"] = 100;
-console.log(product);
