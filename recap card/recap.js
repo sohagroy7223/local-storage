@@ -16,15 +16,29 @@ const displayCartValue = (name, quantity) => {
 };
 
 const getProductsFromLocalStorage = () => {
-  const cart = {};
+  let cart = {};
   const getProduct = localStorage.getItem("cart");
   if (getProduct) {
-    cart = JSON.stringify(getProduct);
+    cart = JSON.parse(getProduct);
   }
   return cart;
 };
 
+const displayProductFromLocalStorage = () => {
+  const products = getProductsFromLocalStorage();
+  for (const product in products) {
+    displayCartValue(product, products[product]);
+  }
+};
+
 const saveProductToLocalStorage = (name, quantity) => {
   const cart = getProductsFromLocalStorage();
-  console.log(cart);
+
+  cart[name] = quantity;
+
+  const cartString = JSON.stringify(cart);
+
+  localStorage.setItem("cart", cartString);
 };
+
+displayProductFromLocalStorage();
