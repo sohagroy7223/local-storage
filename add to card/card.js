@@ -23,9 +23,18 @@ const getProductFromLocalStorage = () => {
   return card;
 };
 
+const displayProductsFromLocalStor = () => {
+  const products = getProductFromLocalStorage();
+  for (const product in products) {
+    displayProduct(product, products[product]);
+  }
+};
+
 const saveProductToLocalStorage = (productName, quantity) => {
   const card = getProductFromLocalStorage();
   card[productName] = quantity;
   const cardString = JSON.stringify(card);
   localStorage.setItem("card", cardString);
 };
+
+displayProductsFromLocalStor();
