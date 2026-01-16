@@ -1,13 +1,30 @@
 const handleCardBtn = () => {
   const productName = document.getElementById("productName").value;
   const productQuantity = document.getElementById("productQuantity").value;
-  displayCardValue(productName, productQuantity);
+  displayCartValue(productName, productQuantity);
 };
 
-const displayCardValue = (name, quantity) => {
-  const cardContainer = document.getElementById("card-container");
+const displayCartValue = (name, quantity) => {
+  productName.value = "";
+  productQuantity.value = "";
+  saveProductToLocalStorage(name, quantity);
+  const cartContainer = document.getElementById("cart-container");
   const li = document.createElement("li");
   li.innerText = `${name}: ${quantity}`;
 
-  cardContainer.append(li);
+  cartContainer.append(li);
+};
+
+const getProductsFromLocalStorage = () => {
+  const cart = {};
+  const getProduct = localStorage.getItem("cart");
+  if (getProduct) {
+    cart = JSON.stringify(getProduct);
+  }
+  return cart;
+};
+
+const saveProductToLocalStorage = (name, quantity) => {
+  const cart = getProductsFromLocalStorage();
+  console.log(cart);
 };
